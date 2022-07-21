@@ -1,1 +1,79 @@
-<p>home-demo works! Rồi nè</p>
+<p>home-demo {{ name }} works! Rồi nè</p>
+<input value="dsajdhakjsd" /> <br />
+<input value="{{ name }}" /> <br />
+<input value="{{ abcd }}" /> <br />
+<hr />
+<input [value]="name" title="dsada {{ abcd }}" /> <br />
+<input value="dsadsfdsfsdfdsfs {{ abcd }}" /> <br />
+<input [value]="abcd + 'ooooooooo_uuuu'" /> <br />
+<hr />
+<h2 *ngIf="ages > 18">Lớn hơn 18 nè nhe</h2>
+<h2 *ngIf="ages <= 18">Nhỏ hơn 18 nè nhe</h2>
+
+<!-- demoText -->
+<hr />
+<input type="text" [value]="demoText" [disabled]="true" />
+<input type="text" [(ngModel)]="demoText" />
+<h2>Tên của bạn: {{ demoText }}</h2>
+<button (click)="resetDemoText(demoText)">Reset Input</button>
+
+<!-- abcd -->
+<hr />
+<input type="text" [value]="abcd" [disabled]="true" />
+<input type="text" [(ngModel)]="abcd" />
+<h2>Tên của bạn: {{ abcd }}</h2>
+<button (click)="resetDemoText(abcd)">Reset Input</button>
+
+<!-- ngTemplate -->
+<hr />
+<div *ngIf="ages <= 15; then tre; else gia">aaa</div>
+<ng-template #tre><h2>Ban còn trẻ</h2></ng-template>
+<ng-template #gia><h2>Ban đã giàa</h2></ng-template>
+
+<!-- FOR -->
+<hr />
+<div *ngFor="let trai of arrFruit; let i = index">
+  <!-- index là từ khóa -->
+  <li>{{ i }} - {{ trai }}</li>
+</div>
+
+<!-- FOR2 -->
+<hr />
+
+<table>
+  <tr>
+    <th>Stt</th>
+    <th>NAME</th>
+    <th>PRICE</th>
+    <th>SALE</th>
+  </tr>
+  <tr *ngFor="let trai of arrFruit2; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ trai.ten }}</td>
+    <td>
+      <span [ngClass]="{ 'so-am': trai.gia < 0, 'so-duong': trai.gia > 0 }">{{
+        trai.gia | currency: "VND":"symbol":"3.4"
+      }}</span>
+    </td>
+    <td>
+      <span *ngIf="trai.haGia"
+        >Đang giãm giá - {{ trai.haGia | onSale | uppercase }}</span
+      >
+    </td>
+  </tr>
+</table>
+
+<!-- Cascading Combobox -->
+<hr />
+Tỉnh/Thành:
+<select id="city" (change)="changeCity($event)">
+  <option *ngFor="let data of vietnamDatas" value="{{ data.city }}">
+    {{ data.city }}
+  </option>
+</select>
+Quận/Huyện:
+<select>
+  <option *ngFor="let district of districts" value="{{ district }}">
+    {{ district }}
+  </option>
+</select>

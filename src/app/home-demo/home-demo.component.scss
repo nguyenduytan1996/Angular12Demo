@@ -1,0 +1,24 @@
+$red: #dd0000;
+
+.box {
+  color: $red;
+  ul {
+    padding: 10px;
+    li {
+      padding: 20px;
+    }
+    &.lopcon1 {
+      padding: 30px;
+      &.lopcon1-1 {
+        padding: 40px;
+      }
+    }
+  }
+}
+
+.so-am {
+  color: red;
+}
+.so-duong {
+  color: blue;
+}
